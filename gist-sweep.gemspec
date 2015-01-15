@@ -1,22 +1,24 @@
-# coding: utf-8
-lib = File.expand_path('../lib', __FILE__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'gist/sweep/version'
+# -*- encoding: utf-8 -*-
+$:.push File.expand_path("../lib", __FILE__)
+require "gist/sweep/version"
 
-Gem::Specification.new do |spec|
-  spec.name          = "gist-sweep"
-  spec.version       = Gist::Sweep::VERSION
-  spec.authors       = ["Adam Shannon"]
-  spec.email         = ["adam@ashannon.us"]
-  spec.summary       = "sweep gists"
-  spec.description   = "Clear our old github gists"
-  spec.homepage      = ""
-  spec.license       = "MIT"
+Gem::Specification.new do |s|
+  s.name        = "gist-sweep"
+  s.version     = Gist::Sweep::VERSION
+  s.authors     = ["Adam Shannon"]
+  s.email       = ["adam@ashannon.us"]
+  s.homepage    = ""
+  s.summary     = "sweep gists"
+  s.description = "Clear our old github gists"
 
-  spec.files            = `git ls-files`.split("\n")
-  spec.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
-  spec.require_paths = ["lib"]
+  s.files         = `git ls-files`.split("\n")
+  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
+  s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
+  s.require_paths = ["lib"]
 
-  spec.add_development_dependency "bundler", "~> 1.7"
-  spec.add_development_dependency "rake", "~> 10.0"
+  s.add_runtime_dependency "json"
+  s.add_runtime_dependency "github_api"
+
+  s.add_development_dependency "bundler", "~> 1.7"
+  s.add_development_dependency "rake", "~> 10.0"
 end
