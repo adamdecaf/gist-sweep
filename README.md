@@ -1,6 +1,17 @@
-# Gist::Sweep
+# gist-sweep
 
-TODO: Write a gem description
+## Usage
+
+> gist-sweep -u adamdecaf
+
+```
+Usage: gist-sweep [options]
+    -v, -s                           Print verbose messages
+    -c                               Read config from a different file
+    -u                               Username to sweep gists on
+    -d                               Days to keep
+    -p                               Include public gists
+```
 
 ## Installation
 
@@ -17,15 +28,3 @@ And then execute:
 Or install it yourself as:
 
     $ gem install gist-sweep
-
-## Usage
-
-TODO: Write usage instructions here
-
-## Contributing
-
-1. Fork it ( https://github.com/[my-github-username]/gist-sweep/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
