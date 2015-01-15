@@ -5,7 +5,7 @@ require 'github_api'
 require 'optparse'
 
 module GistSweep
-  module Sweep
+  class Sweep
     def parse_arguments()
       options = {
         :verbose => false,

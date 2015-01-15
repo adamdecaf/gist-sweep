@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+require 'gist/sweep'
+sweep = GistSweep::Sweep.new
+sweep.sweep()
