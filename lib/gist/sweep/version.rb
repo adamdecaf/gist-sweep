@@ -1,0 +1,5 @@
+module Gist
+  module Sweep
+    VERSION = "0.0.1"
+  end
+end
