@@ -75,7 +75,7 @@ module GistSweep
     end
 
     def promot_to_remove_gists(count)
-      puts "Remove #{count} gists? (y/n)"
+      print "Remove #{count} gists? (y/n) "
       line = STDIN.gets.strip
       if line == 'y'
         true
