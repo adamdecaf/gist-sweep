@@ -74,8 +74,11 @@ module GistSweep
       end
     end
 
-    def promot_to_remove_gists(count)
-      print "Remove #{count} gists? (y/n) "
+    def promot_to_remove_gists(gists)
+      gists.each { |g|
+        puts "#{g["id"]} -- #{g["description"]}"
+      }
+      print "Remove #{gists.size} gists? (y/n) "
       line = STDIN.gets.strip
       if line == 'y'
         true
@@ -90,22 +93,44 @@ module GistSweep
       end
     end
 
-    def sweep()
+    def sweep(raw_args)
       args = parse_arguments()
       config = read_config_from_file(args[:config_file])
       github = load_github_api(config, args[:config_file])
 
+      # Find out if there's a pattern passed in...
+      arg_count =
+        if raw_args.include?("-v")
+          # If there's a -v passed in treat it as an arg like -u
+          raw_args.size - 1
+        else
+          raw_args.size
+        end
+
+      pattern =
+        if arg_count % 2 == 1
+          raw_args[arg_count]
+        end
+
       if args[:username]
         min_age = DateTime.now - args[:days]
         verbose_log(args, "Removing gists older than #{min_age}")
+
+        pattern_matcher = Regexp.new(pattern || "")
+
         gists_to_remove = github.gists.list(args[:username]).body.select{ |g|
-          (!g["public"] or args[:public]) and (DateTime.parse(g["updated_at"]) < min_age)
+          keep_already = (!g["public"] or args[:public]) and (DateTime.parse(g["updated_at"]) < min_age)
+          if pattern
+            keep_already and pattern_matcher.match(g["description"])
+          else
+            keep_already
+          end
         }
 
         if gists_to_remove.empty?
           puts "No gists to remove"
         else
-          if promot_to_remove_gists(gists_to_remove.size)
+          if promot_to_remove_gists(gists_to_remove)
             gists_to_remove.each { |g|
               verbose_log(args, "Deleting gist #{g["id"]}")
               github.gists.delete(g["id"])

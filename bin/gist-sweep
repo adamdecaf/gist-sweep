@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
 require 'gist/sweep'
+raw_args = ARGV.to_a.clone
 sweep = GistSweep::Sweep.new
-sweep.sweep()
+sweep.sweep(raw_args)
