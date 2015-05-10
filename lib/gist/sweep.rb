@@ -25,11 +25,11 @@ module GistSweep
           options[:config_file] = c
         end
 
-        opts.on("-u", "Username to sweep gists on") do |u|
+        opts.on("-u USERNAME", "Username to sweep gists on") do |u|
           options[:username] = u
         end
 
-        opts.on("-d", "Days to keep", Integer) do |d|
+        opts.on("-d NUM", "Days to keep", Integer) do |d|
           options[:days] = d.to_i
         end
 
@@ -98,19 +98,8 @@ module GistSweep
       config = read_config_from_file(args[:config_file])
       github = load_github_api(config, args[:config_file])
 
-      # Find out if there's a pattern passed in...
-      arg_count =
-        if raw_args.include?("-v")
-          # If there's a -v passed in treat it as an arg like -u
-          raw_args.size - 1
-        else
-          raw_args.size
-        end
-
-      pattern =
-        if arg_count % 2 == 1
-          raw_args[arg_count]
-        end
+      # pattern will be the first item in ARGV after options are parsed
+      pattern = ARGV[0]
 
       if args[:username]
         min_age = DateTime.now - args[:days]

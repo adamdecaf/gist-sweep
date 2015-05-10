@@ -13,6 +13,7 @@ Usage: gist-sweep [options]
     -u                               Username to sweep gists on
     -d                               Days to keep
     -p                               Include public gists
+    [pattern]                        Optional pattern to match gist descriptions to
 ```
 
 ## Installation
