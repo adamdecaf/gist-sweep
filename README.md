@@ -7,7 +7,7 @@ A similar tool to [git-sweep](http://lab.arc90.com/2012/04/03/git-sweep/), but f
 > gist-sweep -u adamdecaf
 
 ```
-Usage: gist-sweep [options]
+Usage: gist-sweep [options] [PATTERN]
     -v, -s                           Print verbose messages
     -c                               Read config from a different file
     -u                               Username to sweep gists on
