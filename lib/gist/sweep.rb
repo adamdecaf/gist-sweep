@@ -108,11 +108,11 @@ module GistSweep
         pattern_matcher = Regexp.new(pattern || "")
 
         gists_to_remove = github.gists.list(args[:username]).body.select{ |g|
-          keep_already = (!g["public"] or args[:public]) and (DateTime.parse(g["updated_at"]) < min_age)
+          remove_already = (!g["public"] or args[:public]) && (DateTime.parse(g["updated_at"]) < min_age)
           if pattern
-            keep_already and pattern_matcher.match(g["description"])
+            remove_already && pattern_matcher.match(g["description"])
           else
-            keep_already
+            remove_already
           end
         }
 
