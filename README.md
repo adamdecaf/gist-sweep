@@ -18,8 +18,9 @@ Usage: gist-sweep [options] [PATTERN]
 
 ## Installation
 
-    $ gem install gist-sweep
-
+```shell
+gem install gist-sweep
+```
 
 ## Contributing
 
