@@ -18,18 +18,6 @@ Usage: gist-sweep [options] [PATTERN]
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'gist-sweep'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
     $ gem install gist-sweep
 
 
