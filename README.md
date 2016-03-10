@@ -7,13 +7,13 @@ A similar tool to [git-sweep](http://lab.arc90.com/2012/04/03/git-sweep/), but f
 > gist-sweep -u adamdecaf
 
 ```
-Usage: gist-sweep [options] [PATTERN]
+~/src/gist-sweep $ gist-sweep --help
+Usage: gist-sweep [options]
     -v, -s                           Print verbose messages
     -c                               Read config from a different file
-    -u                               Username to sweep gists on
-    -d                               Days to keep
+    -u USERNAME                      Username to sweep gists on
+    -d NUM                           Days to keep (default=90)
     -p                               Include public gists
-    [pattern]                        Optional pattern to match gist descriptions to
 ```
 
 ## Installation
