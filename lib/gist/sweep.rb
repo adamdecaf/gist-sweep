@@ -29,7 +29,7 @@ module GistSweep
           options[:username] = u
         end
 
-        opts.on("-d NUM", "Days to keep", Integer) do |d|
+        opts.on("-d NUM", "Days to keep (default=90)", Integer) do |d|
           options[:days] = d.to_i
         end
 
