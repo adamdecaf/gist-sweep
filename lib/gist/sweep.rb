@@ -76,7 +76,7 @@ module GistSweep
 
     def promot_to_remove_gists(gists)
       gists.each { |g|
-        puts "#{g["id"]} -- #{g["description"]}"
+        puts "#{g["updated_at"]} (#{g["id"]}) -- #{g["description"]}"
       }
       print "Remove #{gists.size} gists? (y/n) "
       line = STDIN.gets.strip
