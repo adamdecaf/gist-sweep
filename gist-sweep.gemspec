@@ -18,9 +18,9 @@ Gem::Specification.new do |s|
 
   s.licenses = ["MIT"]
 
-  s.add_runtime_dependency "json", "~> 1.7"
-  s.add_runtime_dependency "github_api", "~> 0.12"
+  s.add_runtime_dependency "json", "> 2.0.0"
+  s.add_runtime_dependency "github_api", "~> 0.14.5"
 
-  s.add_development_dependency "bundler", "~> 1.7"
-  s.add_development_dependency "rake", "~> 10.0"
+  s.add_development_dependency "bundler", "~> 1.13.7"
+  s.add_development_dependency "rake", "~> 12.0.0"
 end
