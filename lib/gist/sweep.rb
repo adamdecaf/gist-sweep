@@ -21,6 +21,10 @@ module GistSweep
           options[:verbose] = v
         end
 
+        opts.on("-V", "Show the version") do |v|
+          puts "gist-sweep: #{Gist::Sweep::VERSION}"
+        end
+
         opts.on("-c", "Read config from a different file") do |c|
           options[:config_file] = c
         end
