@@ -1,7 +1,7 @@
 require "gist/sweep/version"
 require 'date'
 require 'json'
-require 'github_api'
+require 'octokit'
 require 'optparse'
 
 module GistSweep
@@ -68,20 +68,20 @@ module GistSweep
 
     def load_github_api(config, file_path)
       if config["oauth_token"] and !config["oauth_token"].empty?
-        Github.new(:oauth_token => config["oauth_token"], :auto_pagination => true)
+        Octokit::Client.new(:access_token => config["oauth_token"])
       else
         puts "You need to setup a 'Personal Access Token' to use with gist-sweep"
         puts "I'll wait for you to paste one in: "
         code = STDIN.gets.strip
         write_config_file(code, file_path)
-        Github.new(:oauth_token => code, :auto_pagination => true)
+        Octokit::Client.new(:access_token => code)
       end
     end
 
     def promot_to_remove_gists(gists)
-      gists.each { |g|
-        puts "#{g["updated_at"]} (#{g["id"]}) -- #{g["description"]}"
-      }
+      gists.each do |g|
+        puts "#{g[:updated_at]} (#{g[:id]}) -- #{g[:description]}"
+      end
       print "Remove #{gists.size} gists? (y/n) "
       line = STDIN.gets.strip
       if line == 'y'
@@ -111,23 +111,23 @@ module GistSweep
 
         pattern_matcher = Regexp.new(pattern || "")
 
-        gists_to_remove = github.gists.list(args[:username]).body.select{ |g|
-          remove_already = (!g["public"] or args[:public]) && (DateTime.parse(g["updated_at"]) < min_age)
+        gists_to_remove = github.gists(args[:username]).select do |g|
+          remove_already = (!g[:public] or args[:public]) && (g[:updated_at].to_datetime < min_age)
           if pattern
-            remove_already && pattern_matcher.match(g["description"])
+            remove_already && pattern_matcher.match(g[:description])
           else
             remove_already
           end
-        }
+        end
 
         if gists_to_remove.empty?
           puts "No gists to remove"
         else
           if promot_to_remove_gists(gists_to_remove)
-            gists_to_remove.each { |g|
-              verbose_log(args, "Deleting gist #{g["id"]}")
-              github.gists.delete(g["id"])
-            }
+            gists_to_remove.each do |g|
+              verbose_log(args, "Deleting gist #{g[:id]}")
+              github.delete_gist(g[:id])
+            end
             puts "Swept gists."
           end
         end
