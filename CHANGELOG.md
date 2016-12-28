@@ -1,4 +1,4 @@
-## 0.2.0 (Unreleased)
+## 0.2.0 (2016-12-28)
 
 - Switch underlying libraries over to [octokit](https://github.com/octokit/octokit.rb/)
 
