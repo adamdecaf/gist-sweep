@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.name        = "gist-sweep"
   s.version     = Gist::Sweep::VERSION
   s.authors     = ["Adam Shannon"]
-  s.email       = ["adam@ashannon.us"]
+  s.email       = ["adamkshannon@gmail.com"]
   s.homepage    = "https://github.com/adamdecaf/gist-sweep"
   s.summary     = "sweep gists"
   s.description = "Clear our old github gists"
