@@ -21,6 +21,6 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency "json", "~> 2.0"
   s.add_runtime_dependency "octokit", "~> 4.0"
 
-  s.add_development_dependency "bundler", "~> 1.13"
+  s.add_development_dependency "bundler", ">= 2.2.10"
   s.add_development_dependency "rake", "~> 12.0"
 end
